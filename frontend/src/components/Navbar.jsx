@@ -28,16 +28,16 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-10 bg-white shadow-lg">
+    <nav className="sticky top-0 z-10 bg-[#FFF5E6] shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-24"> 
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <div className='group relative'>
-                <h1 className="text-4xl font-extrabold text-amber-600 transition duration-300 ease-in-out hover:text-amber-800 transform hover:scale-105">
+                <h1 className="text-4xl font-extrabold text-[#001740] transition duration-300 ease-in-out hover:text-[#003366] transform hover:scale-105">
                   HostIQ
                 </h1>
-                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-amber-600 origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-[#FFB600] origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
               </div>
             </Link>
           </div>
@@ -47,7 +47,7 @@ const Navbar = () => {
             {isAdmin && (
               <Link
                 to="/admin"
-                className="text-gray-600 hover:text-red-600 transition duration-150 font-bold text-lg flex items-center"
+                className="text-[#001740] hover:text-[#FFB600] transition duration-150 font-bold text-lg flex items-center"
               >
                 <FaTachometerAlt className="mr-1" /> Admin Dashboard
               </Link>
@@ -56,7 +56,7 @@ const Navbar = () => {
             {isWarden && (
               <Link
                 to="/warden"
-                className="text-gray-600 hover:text-blue-600 transition duration-150 font-bold text-lg flex items-center"
+                className="text-[#001740] hover:text-[#FFB600] transition duration-150 font-bold text-lg flex items-center"
               >
                 <FaShieldAlt className="mr-1" /> Warden Tools
               </Link>
@@ -65,7 +65,7 @@ const Navbar = () => {
             {showAttendanceFeesLinks && (
               <Link
                 to="/attendance"
-                className="text-gray-600 hover:text-purple-600 transition duration-150 font-medium text-lg flex items-center"
+                className="text-[#001740] hover:text-[#FFB600] transition duration-150 font-medium text-lg flex items-center"
               >
                 <FaCalendarCheck className="mr-1" /> Attendance
               </Link>
@@ -74,7 +74,7 @@ const Navbar = () => {
             {showAttendanceFeesLinks && (
               <Link
                 to="/fees"
-                className="text-gray-600 hover:text-orange-600 transition duration-150 font-medium text-lg flex items-center"
+                className="text-[#001740] hover:text-[#FFB600] transition duration-150 font-medium text-lg flex items-center"
               >
                 <FaMoneyBillAlt className="mr-1" /> Fees
               </Link>
@@ -83,7 +83,7 @@ const Navbar = () => {
             {showDatabaseLink && (
               <Link
                 to="/database"
-                className="text-gray-600 hover:text-amber-600 transition duration-150 font-medium text-lg"
+                className="text-[#001740] hover:text-[#FFB600] transition duration-150 font-medium text-lg"
               >
                 Database
               </Link>
@@ -93,28 +93,28 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="p-2 rounded-full text-amber-600 hover:text-amber-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition duration-150"
+                  className="p-2 rounded-full text-[#FFB600] hover:text-[#001740] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FFB600] transition duration-150"
                   aria-expanded={isDropdownOpen}
                 >
                   <FaUserCircle className="h-10 w-10" /> 
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-20">
+                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-2xl border border-gray-100 bg-white z-20">
                     <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                      <div className="px-4 py-2 text-sm text-gray-700 border-b truncate">
+                      <div className="px-4 py-2 text-sm text-[#001740] font-semibold border-b border-gray-200 truncate">
                          Hi, {user.firstName} ({user.role})
                       </div>
                       <button
                         onClick={handleEditProfile}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#FFF5E6] hover:text-[#001740] transition duration-150"
                         role="menuitem"
                       >
                         Edit Profile
                       </button>
                       <button
                         onClick={handleLogout}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#FFF5E6] hover:text-[#001740] transition duration-150"
                         role="menuitem"
                       >
                         Log Out
@@ -126,7 +126,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/login"
-                className="px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 transition duration-150"
+                className="px-6 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-[#001740] hover:bg-[#FFB600] hover:text-[#001740] transition duration-150"
               >
                 Login
               </Link>

@@ -134,13 +134,13 @@ const EditProfile = () => {
     }
   };
 
-  const inputClass = "w-full p-3 border border-gray-300 rounded-md focus:ring-amber-500 focus:border-amber-500 disabled:bg-gray-100 disabled:text-gray-500";
-  const buttonClass = "w-full bg-amber-600 text-white p-3 rounded-md font-semibold hover:bg-amber-700 transition duration-150 disabled:opacity-50";
+  const inputClass = "w-full p-3 border border-gray-300 rounded-md focus:ring-[#FFB600] focus:border-[#FFB600] disabled:bg-gray-100 disabled:text-gray-500";
+  const buttonClass = "w-full bg-[#001740] text-white p-3 rounded-md font-semibold hover:bg-[#FFB600] hover:text-[#001740] transition duration-150 disabled:opacity-50";
 
   if (loading && !formData.firstName) {
     return (
       <div className="text-center py-12">
-        <div className="w-10 h-10 border-4 border-amber-500 border-t-transparent border-solid rounded-full animate-spin inline-block"></div>
+        <div className="w-10 h-10 border-4 border-[#FFB600] border-t-transparent border-solid rounded-full animate-spin inline-block"></div>
         <p className="mt-2 text-gray-600">Loading Profile...</p>
       </div>
     );
@@ -151,9 +151,9 @@ const EditProfile = () => {
   }
 
   return (
-    <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-[#f8f8f8]">
       <div className="max-w-xl w-full space-y-8 bg-white p-10 rounded-xl shadow-lg">
-        <h2 className="text-center text-3xl font-extrabold text-amber-600">
+        <h2 className="text-center text-3xl font-extrabold text-[#001740]">
           Edit Student Profile
         </h2>
         {success && <p className="text-green-600 text-center p-3 bg-green-50 rounded-md">{success}</p>}
@@ -201,7 +201,7 @@ const EditProfile = () => {
                     value={hobby}
                     checked={formData.hobbies.includes(hobby)}
                     onChange={handleHobbyChange}
-                    className="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500"
+                    className="h-4 w-4 text-[#FFB600] border-gray-300 rounded focus:ring-[#FFB600]"
                   />
                   <span>{hobby}</span>
                 </label>

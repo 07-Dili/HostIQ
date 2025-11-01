@@ -32,13 +32,13 @@ const Login = () => {
     }
   };
 
-  const inputClass = "w-full p-3 border border-gray-300 rounded-md focus:ring-amber-500 focus:border-amber-500";
-  const buttonClass = "w-full bg-amber-600 text-white p-3 rounded-md font-semibold hover:bg-amber-700 transition duration-150 disabled:opacity-50";
+  const inputClass = "w-full p-3 border border-gray-300 rounded-md focus:ring-[#FFB600] focus:border-[#FFB600]";
+  const buttonClass = "w-full bg-[#001740] text-white p-3 rounded-md font-semibold hover:bg-[#FFB600] hover:text-[#001740] transition duration-150 disabled:opacity-50";
 
   return (
-    <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-[#f8f8f8]">
       <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg">
-        <h2 className="text-center text-3xl font-extrabold text-amber-600">
+        <h2 className="text-center text-3xl font-extrabold text-[#001740]">
           Sign in to HostIQ
         </h2>
         {error && <p className="text-red-500 text-center">{error}</p>}
@@ -59,7 +59,7 @@ const Login = () => {
           </div>
         </form>
         <div className="text-sm text-center">
-          Don't have an account? <Link to="/signup" className="font-medium text-amber-600 hover:text-amber-500">Sign Up</Link>
+          Don't have an account? <Link to="/signup" className="font-medium text-[#FFB600] hover:text-[#001740]">Sign Up</Link>
         </div>
       </div>
     </div>

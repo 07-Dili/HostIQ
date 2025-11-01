@@ -106,7 +106,7 @@ const Database = () => {
   if (loading) {
     return (
       <div className="text-center py-12">
-        <div className="w-10 h-10 border-4 border-amber-500 border-t-transparent border-solid rounded-full animate-spin inline-block"></div>
+        <div className="w-10 h-10 border-4 border-[#FFB600] border-t-transparent border-solid rounded-full animate-spin inline-block"></div>
         <p className="mt-2 text-gray-600">Loading Student Database...</p>
       </div>
     );
@@ -118,9 +118,9 @@ const Database = () => {
   
   return (
     <div className="p-4">
-      <div className="bg-amber-100 p-6 rounded-lg shadow-md mb-6 border-l-4 border-amber-600">
-        <h1 className="text-3xl font-extrabold text-amber-800">Student Database</h1>
-        <p className="text-lg text-amber-700 mt-1">
+      <div className="bg-[#f8f8f8] p-6 rounded-lg shadow-md mb-6 border-l-4 border-[#FFB600]">
+        <h1 className="text-3xl font-extrabold text-[#001740]">Student Database</h1>
+        <p className="text-lg text-gray-600 mt-1">
           Block: <span className="font-semibold">{database.blockName || 'N/A'}</span> | Date: <span className="font-semibold">{currentDate}</span>
         </p>
       </div>
@@ -139,7 +139,7 @@ const Database = () => {
             <select 
                 value={filterDept} 
                 onChange={(e) => setFilterDept(e.target.value)} 
-                className="p-2 border border-gray-300 rounded text-sm"
+                className="p-2 border border-gray-300 rounded text-sm focus:ring-[#FFB600] focus:border-[#FFB600]"
             >
                 <option value="">Filter by Department</option>
                 {departments.map(d => <option key={d} value={d}>{d}</option>)}
@@ -148,7 +148,7 @@ const Database = () => {
             <select 
                 value={filterYear} 
                 onChange={(e) => setFilterYear(e.target.value)} 
-                className="p-2 border border-gray-300 rounded text-sm"
+                className="p-2 border border-gray-300 rounded text-sm focus:ring-[#FFB600] focus:border-[#FFB600]"
             >
                 <option value="">Filter by Year</option>
                 {years.map(y => <option key={y} value={y}>{y} Year</option>)}
@@ -160,7 +160,7 @@ const Database = () => {
                     placeholder="Search by Name or Room No..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="p-2 pl-10 border border-gray-300 rounded-lg w-full text-sm"
+                    className="p-2 pl-10 border border-gray-300 rounded-lg w-full text-sm focus:ring-[#FFB600] focus:border-[#FFB600]"
                 />
                 <FaSearch className="absolute left-3 text-gray-400 h-4 w-4" />
             </div>
@@ -185,11 +185,11 @@ const Database = () => {
             return (
               <div 
                 key={roomNumber} 
-                className={`bg-white p-4 rounded-lg shadow-lg border-t-4 border-amber-500 transition-all ${isWarden && isClickable ? 'hover:shadow-xl cursor-pointer' : ''}`}
+                className={`bg-white p-4 rounded-lg shadow-lg border-t-4 border-[#FFB600] transition-all ${isWarden && isClickable ? 'hover:shadow-xl cursor-pointer' : ''}`}
                 onClick={isWarden && isClickable ? () => handleRoomClick(roomNumber) : undefined}
               >
                 
-                <h2 className="text-xl font-bold mb-3 text-amber-700">Room No. {roomNumber}</h2>
+                <h2 className="text-xl font-bold mb-3 text-[#001740]">Room No. {roomNumber}</h2>
                 <div className="text-sm text-gray-500">
                     Students: {filteredRooms[roomNumber].length} / 4
                 </div>

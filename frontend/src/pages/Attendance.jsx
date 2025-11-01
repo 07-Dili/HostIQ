@@ -50,7 +50,6 @@ const Attendance = () => {
       
       const assignedStudents = Object.values(studentDBData.rooms).flat().filter(s => s.roomNumber && s.roomNumber !== 0);
       
-      // 2. Fetch specific daily status for the selected date
       const statusConfig = {
           headers: { 'Authorization': `Bearer ${token}` },
           params: { date: selectedDate, blockName: user.blockName }
@@ -63,10 +62,8 @@ const Attendance = () => {
           return acc;
       }, {});
       
-      // 3. Initialize attendanceChanges state with fetched status or 'Absent' default
       const initialChanges = {};
       assignedStudents.forEach(student => {
-          // Use the status from the daily status map, or default to 'Absent'.
           initialChanges[student._id] = dailyStatusMap[student._id] || 'Absent';
       });
       setAttendanceChanges(initialChanges);
@@ -152,7 +149,7 @@ const Attendance = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-4xl font-extrabold text-amber-600 mb-6">Attendance Register</h1>
+      <h1 className="text-4xl font-extrabold text-[#001740] mb-6">Attendance Register</h1>
       <p className="text-lg text-gray-700 mb-4">Block: <span className="font-semibold">{user?.blockName || 'N/A'}</span> | Date: <span className="font-semibold">{currentDateDisplay}</span></p>
 
       {statusMessage.message && (
@@ -199,8 +196,8 @@ const Attendance = () => {
           <p className="text-center text-gray-500">No assigned students found in this block.</p>
       ) : (
           (isWarden || isAssigned) && assignedRoomKeys.map(roomNumber => (
-              <div key={roomNumber} className="mb-8 bg-white p-6 rounded-lg shadow-md border-l-4 border-amber-500">
-                  <h2 className="text-2xl font-bold mb-4 text-amber-700">Room No. {roomNumber}</h2>
+              <div key={roomNumber} className="mb-8 bg-white p-6 rounded-lg shadow-md border-l-4 border-[#FFB600]">
+                  <h2 className="text-2xl font-bold mb-4 text-[#001740]">Room No. {roomNumber}</h2>
                   <div className="overflow-x-auto">
                       <table className="min-w-full divide-y divide-gray-200">
                           <thead className="bg-gray-50">
@@ -225,14 +222,14 @@ const Attendance = () => {
                                                   value={attendanceChanges[student._id] || 'Absent'}
                                                   onChange={(e) => handleAttendanceChange(student._id, e.target.value)}
                                                   disabled={!isWarden}
-                                                  className={`p-2 border border-gray-300 rounded text-sm focus:ring-amber-500 ${!isWarden ? 'bg-gray-100 text-gray-700' : ''}`}
+                                                  className={`p-2 border border-gray-300 rounded text-sm focus:ring-[#FFB600] ${!isWarden ? 'bg-gray-100 text-gray-700' : ''}`}
                                               >
                                                   <option value="Present">P</option>
                                                   <option value="Absent">A</option>
                                                   <option value="Leave">L</option>
                                               </select>
                                           </td>
-                                          <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-800">
+                                          <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-[#001740]">
                                               {percentage !== undefined ? `${percentage}%` : 'N/A'}
                                           </td>
                                       </tr>

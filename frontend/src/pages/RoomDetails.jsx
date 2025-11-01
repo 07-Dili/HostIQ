@@ -132,7 +132,7 @@ const RoomDetails = () => {
   
   return (
     <div className="p-4">
-      <h1 className="text-4xl font-extrabold text-amber-600 mb-4">
+      <h1 className="text-4xl font-extrabold text-[#001740] mb-4">
         Room {roomNumber} - {user?.blockName} Block
       </h1>
       <p className="text-gray-600 mb-6">
@@ -147,7 +147,7 @@ const RoomDetails = () => {
 
       <div className="overflow-x-auto bg-white rounded-lg shadow-lg">
         <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-amber-50">
+          <thead className="bg-[#f8f8f8]">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Name</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Email</th>
@@ -174,7 +174,7 @@ const RoomDetails = () => {
                               type="number" 
                               value={newRoomNumber}
                               onChange={(e) => setNewRoomNumber(e.target.value)}
-                              className="p-1 border rounded w-16 text-sm"
+                              className="p-1 border rounded w-16 text-sm focus:ring-[#FFB600] focus:border-[#FFB600]"
                           />
                           <button onClick={() => handleUpdateRoom(student._id)} className="text-green-500 hover:text-green-700"><FaSave /></button>
                           <button onClick={handleCancelEdit} className="text-red-500 hover:text-red-700"><FaTimes /></button>
@@ -182,7 +182,7 @@ const RoomDetails = () => {
                   ) : (
                       <div className="flex items-center space-x-2">
                           <span className="font-bold">{student.roomNumber}</span>
-                          <button onClick={() => handleStartEdit(student)} className="text-amber-500 hover:text-amber-700"><FaEdit /></button>
+                          <button onClick={() => handleStartEdit(student)} className="text-[#FFB600] hover:text-[#001740]"><FaEdit /></button>
                       </div>
                   )}
                 </td>

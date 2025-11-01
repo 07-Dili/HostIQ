@@ -135,7 +135,7 @@ const Fees = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-4xl font-extrabold text-amber-600 mb-6">Fees Register</h1>
+      <h1 className="text-4xl font-extrabold text-[#001740] mb-6">Fees Register</h1>
       <p className="text-lg text-gray-700 mb-4">Block: <span className="font-semibold">{user?.blockName || 'N/A'}</span> | Date: <span className="font-semibold">{currentDate}</span></p>
 
       {statusMessage.message && (
@@ -158,7 +158,7 @@ const Fees = () => {
             <select 
                 value={filterDept} 
                 onChange={(e) => setFilterDept(e.target.value)} 
-                className="p-2 border border-gray-300 rounded text-sm"
+                className="p-2 border border-gray-300 rounded text-sm focus:ring-[#FFB600] focus:border-[#FFB600]"
             >
                 <option value="">Filter by Department</option>
                 {departments.map(d => <option key={d} value={d}>{d}</option>)}
@@ -167,7 +167,7 @@ const Fees = () => {
             <select 
                 value={filterYear} 
                 onChange={(e) => setFilterYear(e.target.value)} 
-                className="p-2 border border-gray-300 rounded text-sm"
+                className="p-2 border border-gray-300 rounded text-sm focus:ring-[#FFB600] focus:border-[#FFB600]"
             >
                 <option value="">Filter by Year</option>
                 {years.map(y => <option key={y} value={y}>{y} Year</option>)}
@@ -179,7 +179,7 @@ const Fees = () => {
                     placeholder="Search by Name or Room No..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="p-2 pl-10 border border-gray-300 rounded-lg w-full text-sm"
+                    className="p-2 pl-10 border border-gray-300 rounded-lg w-full text-sm focus:ring-[#FFB600] focus:border-[#FFB600]"
                 />
                 <FaSearch className="absolute left-3 text-gray-400 h-4 w-4" />
             </div>
@@ -210,8 +210,8 @@ const Fees = () => {
           <p className="text-center text-gray-500">No students found matching the current filters.</p>
       ) : (
           (isWarden || isAssigned) && assignedRoomKeys.map(roomNumber => (
-              <div key={roomNumber} className="mb-8 bg-white p-6 rounded-lg shadow-md border-l-4 border-amber-500">
-                  <h2 className="text-2xl font-bold mb-4 text-amber-700">Room No. {roomNumber}</h2>
+              <div key={roomNumber} className="mb-8 bg-white p-6 rounded-lg shadow-md border-l-4 border-[#FFB600]">
+                  <h2 className="text-2xl font-bold mb-4 text-[#001740]">Room No. {roomNumber}</h2>
                   <div className="overflow-x-auto">
                       <table className="min-w-full divide-y divide-gray-200">
                           <thead className="bg-gray-50">
@@ -231,7 +231,7 @@ const Fees = () => {
                                               value={feesChanges[student._id]}
                                               onChange={(e) => handleFeesChange(student._id, e.target.value)}
                                               disabled={!isWarden}
-                                              className={`p-2 border border-gray-300 rounded text-sm focus:ring-amber-500 ${!isWarden ? 'bg-gray-100 text-gray-700' : ''}`}
+                                              className={`p-2 border border-gray-300 rounded text-sm focus:ring-[#FFB600] ${!isWarden ? 'bg-gray-100 text-gray-700' : ''}`}
                                           >
                                               <option value={1}>Paid</option>
                                               <option value={0}>Pending</option>

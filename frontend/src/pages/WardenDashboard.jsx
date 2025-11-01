@@ -233,12 +233,12 @@ const WardenDashboard = () => {
       }
   };
 
-  const inputClass = "w-full p-3 border border-gray-300 rounded-md focus:ring-amber-500 focus:border-amber-500";
-  const buttonClass = "w-full bg-amber-600 text-white p-3 rounded-md font-semibold hover:bg-amber-700 transition duration-150 disabled:opacity-50";
+  const inputClass = "w-full p-3 border border-gray-300 rounded-md focus:ring-[#FFB600] focus:border-[#FFB600]";
+  const buttonClass = "w-full bg-[#001740] text-white p-3 rounded-md font-semibold hover:bg-[#FFB600] hover:text-[#001740] transition duration-150 disabled:opacity-50";
 
   return (
     <div className="p-4">
-      <h1 className="text-4xl font-extrabold text-amber-600 mb-6">Warden Dashboard - {user.blockName} Block</h1>
+      <h1 className="text-4xl font-extrabold text-[#001740] mb-6">Warden Dashboard - {user.blockName} Block</h1>
       
       {statusMessage.message && (
         <div className={`p-3 mb-4 rounded-md font-semibold ${statusMessage.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
@@ -250,13 +250,13 @@ const WardenDashboard = () => {
       <div className="flex border-b border-gray-300 mb-6">
         <button
           onClick={() => setActiveTab('addStudent')}
-          className={`px-4 py-2 text-lg font-medium transition-colors ${activeTab === 'addStudent' ? 'text-amber-700 border-b-2 border-amber-600' : 'text-gray-500 hover:text-amber-500'}`}
+          className={`px-4 py-2 text-lg font-medium transition-colors ${activeTab === 'addStudent' ? 'text-[#001740] border-b-2 border-[#FFB600]' : 'text-gray-500 hover:text-[#FFB600]'}`}
         >
           <FaUserPlus className="inline mr-2" /> Add New Student
         </button>
         <button
           onClick={() => setActiveTab('assignRoom')}
-          className={`px-4 py-2 text-lg font-medium transition-colors ${activeTab === 'assignRoom' ? 'text-amber-700 border-b-2 border-amber-600' : 'text-gray-500 hover:text-amber-500'}`}
+          className={`px-4 py-2 text-lg font-medium transition-colors ${activeTab === 'assignRoom' ? 'text-[#001740] border-b-2 border-[#FFB600]' : 'text-gray-500 hover:text-[#FFB600]'}`}
         >
           <FaBed className="inline mr-2" /> Assign Rooms
         </button>
@@ -268,8 +268,8 @@ const WardenDashboard = () => {
           
           {/* Student Form Section */}
           <div className="w-2/3">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Add Student to {user.blockName} Block</h2>
-            <p className="text-sm text-gray-500 mb-4">Block: <span className="font-semibold text-amber-600">{user.blockName}</span>. Gender: <span className="font-semibold text-amber-600">{user.gender}</span>.</p>
+            <h2 className="text-2xl font-bold text-[#001740] mb-4">Add Student to {user.blockName} Block</h2>
+            <p className="text-sm text-gray-500 mb-4">Block: <span className="font-semibold text-[#FFB600]">{user.blockName}</span>. Gender: <span className="font-semibold text-[#FFB600]">{user.gender}</span>.</p>
             <form className="space-y-4" onSubmit={handleAddStudent}>
               
               {/* Student Info */}
@@ -298,7 +298,7 @@ const WardenDashboard = () => {
                 <div className="grid grid-cols-4 gap-2 p-3 border border-gray-300 rounded-md bg-gray-50">
                   {hobbyOptions.map(hobby => (
                     <label key={hobby} className="flex items-center space-x-2 text-sm text-gray-600">
-                      <input type="checkbox" name="hobbies" value={hobby} checked={studentData.hobbies.includes(hobby)} onChange={handleHobbyChange} className="h-4 w-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500" />
+                      <input type="checkbox" name="hobbies" value={hobby} checked={studentData.hobbies.includes(hobby)} onChange={handleHobbyChange} className="h-4 w-4 text-[#FFB600] border-gray-300 rounded focus:ring-[#FFB600]" />
                       <span>{hobby}</span>
                     </label>
                   ))}
@@ -312,15 +312,15 @@ const WardenDashboard = () => {
           </div>
           
           {/* Hobby Match Section */}
-          <div className="w-1/3 bg-gray-50 p-4 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-700 mb-3 flex items-center">
-                  <FaLightbulb className="text-amber-500 mr-2" /> Room Suggestions
+          <div className="w-1/3 bg-[#f8f8f8] p-4 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-[#001740] mb-3 flex items-center">
+                  <FaLightbulb className="text-[#FFB600] mr-2" /> Room Suggestions
               </h3>
 
               <button 
                   onClick={handleHobbyMatch} 
                   disabled={studentData.hobbies.length === 0 || matchingLoading}
-                  className="w-full bg-blue-500 text-white p-2 rounded-md text-sm hover:bg-blue-600 transition disabled:opacity-50 flex items-center justify-center mb-4"
+                  className="w-full bg-[#001740] text-white p-2 rounded-md text-sm hover:bg-[#FFB600] hover:text-[#001740] transition disabled:opacity-50 flex items-center justify-center mb-4"
               >
                   <FaSearch className="mr-2" /> {matchingLoading ? 'Searching...' : 'Find Compatible Rooms'}
               </button>
@@ -333,7 +333,7 @@ const WardenDashboard = () => {
                       {matchedRooms.map(room => (
                           <div key={room.roomNumber} 
                                onClick={() => setStudentData(prev => ({...prev, roomNumber: room.roomNumber}))}
-                               className={`p-3 border rounded-lg cursor-pointer transition ${studentData.roomNumber == room.roomNumber ? 'bg-amber-100 border-amber-500' : 'bg-white hover:bg-gray-100'}`}
+                               className={`p-3 border rounded-lg cursor-pointer transition ${studentData.roomNumber == room.roomNumber ? 'bg-[#FFB600] border-[#001740] text-[#001740]' : 'bg-white hover:bg-[#FFF5E6]'}`}
                           >
                               <div className="flex justify-between items-center text-sm font-bold">
                                   <span>Room {room.roomNumber}</span>
@@ -342,7 +342,7 @@ const WardenDashboard = () => {
                                   </span>
                               </div>
                               <p className="text-xs text-gray-500 mt-1">
-                                  Match Score: <span className="font-semibold text-blue-600">{room.averageMatchScore.toFixed(1)}</span> (Total Hobbies Shared: {room.totalMatchScore})
+                                  Match Score: <span className="font-semibold text-[#001740]">{room.averageMatchScore.toFixed(1)}</span> (Total Hobbies Shared: {room.totalMatchScore})
                               </p>
                           </div>
                       ))}
@@ -357,7 +357,7 @@ const WardenDashboard = () => {
       {/* 2. Assign Rooms Tab */}
       {activeTab === 'assignRoom' && (
         <div className="bg-white p-8 rounded-xl shadow-lg">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Assign Room to Unassigned Students ({user.blockName})</h2>
+          <h2 className="text-2xl font-bold text-[#001740] mb-4">Assign Room to Unassigned Students ({user.blockName})</h2>
           
           {loading ? (
               <p className="text-center text-gray-500">Loading unassigned students...</p>
@@ -366,13 +366,13 @@ const WardenDashboard = () => {
           ) : (
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead className="bg-[#f8f8f8]">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Year/Dept</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-32">Assign Room</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-20">Action</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Name</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Email</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Year/Dept</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider w-32">Assign Room</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider w-20">Action</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -382,7 +382,7 @@ const WardenDashboard = () => {
                     
                     return (
                       <tr key={student._id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#001740]">
                           {student.firstName} {student.lastName}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -397,7 +397,7 @@ const WardenDashboard = () => {
                             placeholder="Room No"
                             value={roomNo || ''}
                             onChange={(e) => handleRoomInput(student._id, e.target.value)}
-                            className={`p-2 border rounded text-sm w-24 ${!isValid && roomNo ? 'border-red-500' : 'border-gray-300'}`}
+                            className={`p-2 border rounded text-sm w-24 ${!isValid && roomNo ? 'border-red-500' : 'border-gray-300 focus:ring-[#FFB600] focus:border-[#FFB600]'}`}
                           />
                           {!isValid && roomNo && <span className="text-red-500 text-xs ml-2">Full!</span>}
                         </td>
@@ -405,7 +405,7 @@ const WardenDashboard = () => {
                           <button 
                             onClick={() => handleConfirmAssignment(student)}
                             disabled={!isValid || loading}
-                            className={`px-3 py-1 rounded text-white text-xs font-semibold transition ${isValid ? 'bg-green-500 hover:bg-green-600' : 'bg-gray-300 cursor-not-allowed'}`}
+                            className={`px-3 py-1 rounded text-white text-xs font-semibold transition ${isValid ? 'bg-[#FFB600] hover:bg-[#001740] hover:text-white' : 'bg-gray-300 cursor-not-allowed'}`}
                           >
                             <FaCheck className="inline mr-1" /> Assign
                           </button>
@@ -416,7 +416,7 @@ const WardenDashboard = () => {
                 </tbody>
               </table>
               <div className="mt-4 text-sm text-gray-600">
-                  <p>Current Room Availability in {user.blockName}:</p>
+                  <p className="font-semibold text-[#001740]">Current Room Availability in {user.blockName}:</p>
                   <ul className="mt-1 flex flex-wrap gap-x-4">
                       {Object.keys(roomAvailability).map(room => (
                           <li key={room} className={`font-medium ${roomAvailability[room] >= 4 ? 'text-red-600' : 'text-green-600'}`}>
