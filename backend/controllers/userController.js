@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const AttendanceRecord = require('../models/AttendanceRecord'); 
 const bcrypt = require('bcryptjs');
 
 
@@ -224,27 +225,87 @@ const deleteStudent = async (req, res) => {
 };
 
 const updateBulkAttendance = async (req, res) => {
-    const updates = req.body.updates;
+    const { updates, date } = req.body;
     const blockName = req.user.blockName;
 
-    if (!updates || !Array.isArray(updates) || updates.length === 0) {
-        return res.status(400).json({ message: 'No updates provided.' });
+    if (!updates || !Array.isArray(updates) || updates.length === 0 || !date) {
+        return res.status(400).json({ message: 'No updates or date provided.' });
     }
 
+    const recordDate = new Date(date);
+    recordDate.setHours(0, 0, 0, 0); 
+    
     try {
         const operations = updates.map(u => ({
             updateOne: {
-                filter: { _id: u.studentId, blockName: blockName, role: 'student' },
-                update: { $set: { attendance: u.attendance } }
+                filter: { student: u.studentId, date: recordDate },
+                update: { 
+                    $set: { 
+                        status: u.attendance, 
+                        blockName: blockName,
+                        student: u.studentId, 
+                        date: recordDate 
+                    } 
+                },
+                upsert: true 
             }
         }));
 
-        await User.bulkWrite(operations);
+        await AttendanceRecord.bulkWrite(operations);
 
-        res.json({ message: 'Attendance updated successfully.' });
+        res.status(200).json({ message: 'Attendance updated successfully for ' + recordDate.toLocaleDateString() });
     } catch (error) {
-        res.status(500).json({ message: 'Failed to update bulk attendance', error: error.message });
+        res.status(500).json({ 
+            message: 'Failed to update bulk attendance', 
+            error: error.message,
+            name: error.name
+        });
     }
+};
+
+const getAttendanceSummary = async (req, res) => {
+    const blockName = req.user.blockName;
+    
+    const totalDaysResult = await AttendanceRecord.aggregate([
+        { $match: { blockName: blockName } },
+        { $group: { _id: "$date" } },
+        { $count: "totalRecordedDays" }
+    ]);
+    
+    const totalRecordedDays = totalDaysResult.length > 0 ? totalDaysResult[0].totalRecordedDays : 0;
+    
+    if (totalRecordedDays === 0) {
+        return res.json({ summary: [], totalDays: 0 });
+    }
+
+    const presenceSummary = await AttendanceRecord.aggregate([
+        { $match: { blockName: blockName, status: 'Present' } },
+        { $group: { _id: "$student", presentDays: { $sum: 1 } } }
+    ]);
+    
+    const summaryMap = presenceSummary.reduce((acc, item) => {
+        acc[item._id.toString()] = { presentDays: item.presentDays };
+        return acc;
+    }, {});
+    
+    const students = await User.find({ blockName: blockName, role: 'student' }).select('_id');
+    
+    const finalSummary = students.map(student => {
+        const studentId = student._id.toString();
+        const data = summaryMap[studentId] || { presentDays: 0 };
+        
+        const overallPercentage = (data.presentDays / totalRecordedDays) * 100;
+        
+        return {
+            studentId,
+            overallPercentage: parseFloat(overallPercentage.toFixed(1)),
+        };
+    });
+
+    res.json({ 
+        summary: finalSummary, 
+        totalDays: totalRecordedDays 
+    });
 };
 
 const updateBulkFees = async (req, res) => {
@@ -324,6 +385,33 @@ const getHobbyMatches = async (req, res) => {
     }
 };
 
+const getDailyStatus = async (req, res) => {
+    const { date, blockName } = req.query;
+
+    if (!date || !blockName) {
+        return res.status(400).json({ message: 'Date and Block Name are required.' });
+    }
+    
+    if (req.user.role === 'warden' && req.user.blockName !== blockName) {
+        return res.status(403).json({ message: 'Unauthorized access to block status.' });
+    }
+
+    try {
+        const queryDate = new Date(date);
+        queryDate.setHours(0, 0, 0, 0);
+
+        const statuses = await AttendanceRecord.find({
+            blockName: blockName,
+            date: queryDate,
+        }).select('student status');
+
+        res.json({ statuses });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to fetch daily attendance status', error: error.message });
+    }
+};
+
 module.exports = {
     getUserProfile,
     updateUserProfile,
@@ -334,5 +422,7 @@ module.exports = {
     deleteStudent,
     updateBulkAttendance,
     updateBulkFees,
+    getAttendanceSummary,
     getHobbyMatches,
+    getDailyStatus
 };
